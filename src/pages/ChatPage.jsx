@@ -28,43 +28,34 @@ function SendIcon() {
   );
 }
 
-function PhotoPlaceholder({ onClose }) {
-  return (
-    <div
-      className="mb-3 rounded-card overflow-hidden flex items-center justify-center"
-      style={{ backgroundColor: '#252542', height: '160px' }}
-    >
-      <div className="flex flex-col items-center gap-2">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#8888AA" strokeWidth="1.5" strokeLinecap="round">
-          <rect x="3" y="3" width="18" height="18" rx="3"/>
-          <circle cx="8.5" cy="8.5" r="1.5" stroke="#8888AA" fill="none"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        <p className="text-text-sec text-xs">Sélection de photo</p>
-        <button
-          onClick={onClose}
-          className="mt-1 px-4 py-1.5 rounded-full text-xs font-semibold text-white"
-          style={{ backgroundColor: '#7B2FBE' }}
-        >
-          Annuler
-        </button>
-      </div>
-    </div>
-  );
-}
+function PhotoBubble({ isMe, explicit, imageUrl }) {
+  const radius = isMe ? '14px 14px 4px 14px' : '14px 14px 14px 4px';
 
-function PhotoBubble({ isMe, explicit }) {
+  // Vraie photo prise par l'acteur
+  if (imageUrl) {
+    return (
+      <div style={{ borderRadius: radius, overflow: 'hidden', width: '200px' }}>
+        <img
+          src={imageUrl}
+          alt=""
+          style={{ width: '100%', display: 'block', maxHeight: '260px', objectFit: 'cover' }}
+          draggable={false}
+        />
+      </div>
+    );
+  }
+
+  // Placeholder scripté (messages mock du dataset)
   return (
     <div
       className="relative overflow-hidden flex items-center justify-center"
       style={{
         width: '160px',
         height: '200px',
-        borderRadius: isMe ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
+        borderRadius: radius,
         backgroundColor: isMe ? '#5a1f8e' : '#1e1e3a',
       }}
     >
-      {/* fond flouté simulant une photo */}
       <div
         style={{
           position: 'absolute',
@@ -110,7 +101,7 @@ function Bubble({ msg }) {
     <div className={`flex ${isMe ? 'justify-end' : 'justify-start'} mb-2`}>
       <div className="max-w-[75%]">
         {msg.type === 'photo' ? (
-          <PhotoBubble isMe={isMe} explicit={msg.explicit} />
+          <PhotoBubble isMe={isMe} explicit={msg.explicit} imageUrl={msg.imageUrl} />
         ) : (
           <div
             className="px-3.5 py-2.5 text-sm text-white leading-snug"
@@ -147,15 +138,15 @@ export default function ChatPage() {
 
   const [msgs, setMsgs] = useState(initial);
   const [draft, setDraft] = useState('');
-  const [showPhoto, setShowPhoto] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
+  const fileInputRef = useRef(null);
   const responseIndexRef = useRef(0);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [msgs, showPhoto, isTyping]);
+  }, [msgs, isTyping]);
 
   // Envoie une liste de messages scripté un par un, chacun précédé de son typing indicator
   const deliverBatch = (batch, index = 0) => {
@@ -177,6 +168,24 @@ export default function ChatPage() {
     }, pause);
   };
 
+  const triggerScript = () => {
+    if (!script) return;
+    const { responses } = script;
+    const idx = responseIndexRef.current;
+    if (idx < responses.length) {
+      responseIndexRef.current += 1;
+      setTimeout(() => deliverBatch(responses[idx]), 800);
+    }
+  };
+
+  const sendPhoto = (file) => {
+    if (!file) return;
+    const imageUrl = URL.createObjectURL(file);
+    const ts = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+    setMsgs((prev) => [...prev, { id: Date.now(), sender: 'me', type: 'photo', imageUrl, timestamp: ts }]);
+    triggerScript();
+  };
+
   const send = () => {
     const text = draft.trim();
     if (!text) return;
@@ -186,15 +195,7 @@ export default function ChatPage() {
     setDraft('');
     inputRef.current?.blur();
 
-    if (script) {
-      const { responses } = script;
-      const idx = responseIndexRef.current;
-      if (idx < responses.length) {
-        responseIndexRef.current += 1;
-        // Petit délai avant que l'autre "commence à écrire"
-        setTimeout(() => deliverBatch(responses[idx]), 800);
-      }
-    }
+    triggerScript();
   };
 
   const handleKey = (e) => {
@@ -255,12 +256,7 @@ export default function ChatPage() {
           <Bubble key={msg.id} msg={msg} />
         ))}
 
-        {/* Indicateur de frappe */}
         {isTyping && <TypingIndicator />}
-
-        {/* Placeholder photo */}
-        {showPhoto && <PhotoPlaceholder onClose={() => setShowPhoto(false)} />}
-
         <div ref={bottomRef} />
       </div>
 
@@ -273,9 +269,22 @@ export default function ChatPage() {
           paddingBottom: 'env(safe-area-inset-bottom)',
         }}
       >
-        {/* Bouton photo/pièce jointe */}
+        {/* Input caméra caché */}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          capture="user"
+          style={{ display: 'none' }}
+          onChange={(e) => {
+            sendPhoto(e.target.files?.[0]);
+            e.target.value = '';
+          }}
+        />
+
+        {/* Bouton photo */}
         <button
-          onClick={() => setShowPhoto((v) => !v)}
+          onClick={() => fileInputRef.current?.click()}
           className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0 active:opacity-60 transition-opacity"
           style={{ backgroundColor: '#1A1A2E' }}
         >
