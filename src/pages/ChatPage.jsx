@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import StatusBar from '../components/StatusBar';
-import { conversations, messages as mockMessages } from '../data/mockData';
+import { conversations, messages as mockMessages, chatScripts } from '../data/mockData';
 
 function BackIcon() {
   return (
@@ -54,23 +54,78 @@ function PhotoPlaceholder({ onClose }) {
   );
 }
 
+function PhotoBubble({ isMe, explicit }) {
+  return (
+    <div
+      className="relative overflow-hidden flex items-center justify-center"
+      style={{
+        width: '160px',
+        height: '200px',
+        borderRadius: isMe ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
+        backgroundColor: isMe ? '#5a1f8e' : '#1e1e3a',
+      }}
+    >
+      {/* fond flouté simulant une photo */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: explicit
+            ? 'linear-gradient(135deg, #2a1040 0%, #1a0a2e 50%, #0d0d1a 100%)'
+            : 'linear-gradient(135deg, #1e1e3a 0%, #252542 100%)',
+          filter: 'blur(2px)',
+        }}
+      />
+      <div className="relative flex flex-col items-center gap-2" style={{ zIndex: 1 }}>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round">
+          <rect x="3" y="3" width="18" height="18" rx="3"/>
+          <circle cx="8.5" cy="8.5" r="1.5" fill="rgba(255,255,255,0.5)" stroke="none"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '11px' }}>Photo</span>
+      </div>
+    </div>
+  );
+}
+
+function TypingIndicator() {
+  return (
+    <div className="flex justify-start mb-2">
+      <div
+        className="px-4 py-3"
+        style={{ backgroundColor: '#252542', borderRadius: '18px 18px 18px 4px' }}
+      >
+        <div className="flex gap-1 items-center" style={{ height: '14px' }}>
+          <span className="typing-dot" />
+          <span className="typing-dot" style={{ animationDelay: '0.18s' }} />
+          <span className="typing-dot" style={{ animationDelay: '0.36s' }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Bubble({ msg }) {
   const isMe = msg.sender === 'me';
   return (
     <div className={`flex ${isMe ? 'justify-end' : 'justify-start'} mb-2`}>
       <div className="max-w-[75%]">
-        <div
-          className="px-3.5 py-2.5 text-sm text-white leading-snug"
-          style={{
-            backgroundColor: isMe ? '#7B2FBE' : '#252542',
-            borderRadius: isMe
-              ? '18px 18px 4px 18px'
-              : '18px 18px 18px 4px',
-            wordBreak: 'break-word',
-          }}
-        >
-          {msg.text}
-        </div>
+        {msg.type === 'photo' ? (
+          <PhotoBubble isMe={isMe} explicit={msg.explicit} />
+        ) : (
+          <div
+            className="px-3.5 py-2.5 text-sm text-white leading-snug"
+            style={{
+              backgroundColor: isMe ? '#7B2FBE' : '#252542',
+              borderRadius: isMe
+                ? '18px 18px 4px 18px'
+                : '18px 18px 18px 4px',
+              wordBreak: 'break-word',
+            }}
+          >
+            {msg.text}
+          </div>
+        )}
         <p
           className={`text-[10px] mt-1 ${isMe ? 'text-right' : 'text-left'}`}
           style={{ color: '#8888AA' }}
@@ -88,18 +143,40 @@ export default function ChatPage() {
   const convId = parseInt(id, 10);
 
   const conv = conversations.find((c) => c.id === convId);
-  const initial = mockMessages[convId] ?? [];
+  const script = chatScripts[convId];
+  const initial = script ? script.initial : (mockMessages[convId] ?? []);
 
   const [msgs, setMsgs] = useState(initial);
   const [draft, setDraft] = useState('');
   const [showPhoto, setShowPhoto] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
+  const responseIndexRef = useRef(0);
 
-  // Scroll au dernier message à chaque changement
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [msgs, showPhoto]);
+  }, [msgs, showPhoto, isTyping]);
+
+  // Envoie une liste de messages scripté un par un, chacun précédé de son typing indicator
+  const deliverBatch = (batch, index = 0) => {
+    if (index >= batch.length) return;
+    // petite pause avant de commencer à "écrire" (sauf premier qui attend déjà)
+    const pause = index === 0 ? 0 : 600;
+    setTimeout(() => {
+      setIsTyping(true);
+      const typingDelay = 1600 + Math.random() * 1000;
+      setTimeout(() => {
+        setIsTyping(false);
+        const ts = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        setMsgs((prev) => [
+          ...prev,
+          { ...batch[index], id: Date.now() + index, timestamp: ts },
+        ]);
+        deliverBatch(batch, index + 1);
+      }, typingDelay);
+    }, pause);
+  };
 
   const send = () => {
     const text = draft.trim();
@@ -109,6 +186,16 @@ export default function ChatPage() {
     setMsgs((prev) => [...prev, { id: Date.now(), sender: 'me', text, timestamp }]);
     setDraft('');
     inputRef.current?.focus();
+
+    if (script) {
+      const { responses } = script;
+      const idx = responseIndexRef.current;
+      if (idx < responses.length) {
+        responseIndexRef.current += 1;
+        // Petit délai avant que l'autre "commence à écrire"
+        setTimeout(() => deliverBatch(responses[idx]), 800);
+      }
+    }
   };
 
   const handleKey = (e) => {
@@ -152,7 +239,9 @@ export default function ChatPage() {
           >
             {conv.contactPseudo}
           </p>
-          <p className="text-[11px]" style={{ color: '#44DD88' }}>En ligne</p>
+          <p className="text-[11px]" style={{ color: isTyping ? '#8888AA' : '#44DD88' }}>
+            {isTyping ? 'En train d\'écrire…' : 'En ligne'}
+          </p>
         </div>
 
         {/* Menu trois points */}
@@ -169,6 +258,9 @@ export default function ChatPage() {
           <Bubble key={msg.id} msg={msg} />
         ))}
 
+        {/* Indicateur de frappe */}
+        {isTyping && <TypingIndicator />}
+
         {/* Placeholder photo */}
         {showPhoto && <PhotoPlaceholder onClose={() => setShowPhoto(false)} />}
 
@@ -177,8 +269,12 @@ export default function ChatPage() {
 
       {/* Barre de saisie */}
       <div
-        className="flex-shrink-0 px-3 py-3 flex items-end gap-2"
-        style={{ backgroundColor: '#0D0D1A', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        className="flex-shrink-0 px-3 pt-3 flex items-end gap-2"
+        style={{
+          backgroundColor: '#0D0D1A',
+          borderTop: '1px solid rgba(255,255,255,0.06)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom) + 10px)',
+        }}
       >
         {/* Bouton photo/pièce jointe */}
         <button

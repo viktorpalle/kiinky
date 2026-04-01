@@ -55,8 +55,11 @@ export default function BottomNav() {
 
   return (
     <nav
-      className="flex items-center justify-around px-2 pt-2 pb-3 border-t border-white/5"
-      style={{ backgroundColor: '#0D0D1A' }}
+      className="flex items-center justify-around px-2 pt-2 border-t border-white/5 flex-shrink-0"
+      style={{
+        backgroundColor: '#0D0D1A',
+        paddingBottom: 'calc(env(safe-area-inset-bottom) + 8px)',
+      }}
     >
       {tabs.map(({ label, path, Icon, badge }) => {
         const active = path && location.pathname === path;

@@ -84,6 +84,14 @@ export const profiles = [
 export const conversations = [
   {
     id: 1,
+    contactPseudo: 'yoan49',
+    contactAvatar: 'https://i.pravatar.cc/100?img=11',
+    lastMessage: '… chérie ?',
+    date: '2026/03/13',
+    unreadCount: 3,
+  },
+  {
+    id: 2,
     contactPseudo: 'Mouad',
     contactAvatar: 'https://i.pravatar.cc/100?img=33',
     lastMessage: 'Hi',
@@ -91,48 +99,119 @@ export const conversations = [
     unreadCount: 1,
   },
   {
-    id: 2,
+    id: 3,
     contactPseudo: 'alexmalinat',
     contactAvatar: 'https://i.pravatar.cc/100?img=12',
-    lastMessage: 'Tu es disponible ce soir ?',
+    lastMessage: 'pq tu peux pas ?',
     date: '2026/03/12',
-    unreadCount: 0,
+    unreadCount: 1,
   },
   {
-    id: 3,
-    contactPseudo: 'sweety_nana',
-    contactAvatar: 'https://i.pravatar.cc/100?img=47',
-    lastMessage: 'Merci pour le message 😊',
+    id: 4,
+    contactPseudo: 'darkRaven_75',
+    contactAvatar: 'https://i.pravatar.cc/100?img=25',
+    lastMessage: "Jai besoin que tu m'aide pour finir…",
+    date: '2026/03/11',
+    unreadCount: 2,
+  },
+  {
+    id: 5,
+    contactPseudo: 'shadow_knight',
+    contactAvatar: 'https://i.pravatar.cc/100?img=59',
+    lastMessage: 'ok si tu veux on peut jouer…',
     date: '2026/03/10',
-    unreadCount: 3,
+    unreadCount: 2,
   },
 ];
 
+// Conversations statiques (sans script)
 export const messages = {
-  1: [
-    { id: 1, sender: 'them', text: 'Hi', timestamp: '14:22' },
-    { id: 2, sender: 'me', text: 'Salut ! Comment tu vas ?', timestamp: '14:35' },
-    { id: 3, sender: 'them', text: 'Ça va bien merci, et toi ?', timestamp: '14:36' },
-    { id: 4, sender: 'me', text: 'Super ! Tu es dans le coin ?', timestamp: '14:38' },
-    { id: 5, sender: 'them', text: 'Oui je suis à Paris ce weekend', timestamp: '14:40' },
-  ],
   2: [
-    { id: 1, sender: 'me', text: 'Bonjour ! J\'ai vu ton profil et tu m\'as l\'air sympa.', timestamp: '10:12' },
-    { id: 2, sender: 'them', text: 'Bonjour ! Merci c\'est gentil.', timestamp: '10:45' },
-    { id: 3, sender: 'me', text: 'Tu es disponible ce soir ?', timestamp: '11:00' },
-    { id: 4, sender: 'them', text: 'Je vérifie mon agenda et je te dis.', timestamp: '11:02' },
-    { id: 5, sender: 'me', text: 'Pas de souci, prends ton temps !', timestamp: '11:03' },
-    { id: 6, sender: 'them', text: 'Tu es disponible ce soir ?', timestamp: '18:30' },
+    { id: 1, sender: 'them', text: 'Hi', timestamp: '14:22' },
+    { id: 2, sender: 'me', text: 'Salut !', timestamp: '14:35' },
+    { id: 3, sender: 'them', text: 'Tu fais quoi là ?', timestamp: '14:36' },
+    { id: 4, sender: 'me', text: 'Pas grand chose, je traîne', timestamp: '14:38' },
+    { id: 5, sender: 'them', text: 'Ah cool, on pourrait se voir ?', timestamp: '14:40' },
   ],
-  3: [
-    { id: 1, sender: 'them', text: 'Coucou, ton profil est intéressant !', timestamp: '09:05' },
-    { id: 2, sender: 'me', text: 'Oh merci beaucoup ! Le tien aussi haha', timestamp: '09:22' },
-    { id: 3, sender: 'them', text: 'On pourrait se retrouver pour un café ?', timestamp: '09:24' },
-    { id: 4, sender: 'me', text: 'Avec plaisir ! Quand es-tu dispo ?', timestamp: '09:30' },
-    { id: 5, sender: 'them', text: 'Ce week-end ça te va ?', timestamp: '09:31' },
-    { id: 6, sender: 'me', text: 'Parfait pour moi !', timestamp: '09:33' },
-    { id: 7, sender: 'them', text: 'Merci pour le message 😊', timestamp: '09:35' },
-  ],
+};
+
+/**
+ * Scripts de tournage.
+ * initial : messages X déjà affichés à l'ouverture du chat.
+ * responses : tableau de "lots" — chaque lot est déclenché quand l'acteur envoie un message.
+ *   Quand un lot contient plusieurs messages, ils arrivent les uns après les autres
+ *   avec chacun leur propre indicateur de frappe.
+ */
+export const chatScripts = {
+  // ── Conversation 1 (yoan49) ──────────────────────────────
+  // Script : X:Tu te touche? → L:Oui → X:Mmmh photo? → ...
+  1: {
+    initial: [
+      { id: 's1_1', sender: 'them', text: 'Tu te touche ?', timestamp: '21:14' },
+    ],
+    responses: [
+      // après L: "Oui"
+      [{ sender: 'them', text: "Mmmh… tit' photo ?" }],
+      // après L: [envoie photo]  →  X enchaîne deux messages
+      [
+        { sender: 'them', text: 'Miam…' },
+        { sender: 'them', text: 'Tu te touche avec tes doigts?' },
+      ],
+      // après L: "Non"
+      [{ sender: 'them', text: 'Avec quoi ma chérie ?' }],
+      // après L: [envoie photo manche à balais]  →  X enchaîne 4 messages
+      [
+        { sender: 'them', text: "Ah ouais t'es vraiment une petite souillon toi…" },
+        { sender: 'them', text: 'tu continues ?' },
+        { sender: 'them', text: "t'en es où ?" },
+        { sender: 'them', text: '… chérie ?' },
+      ],
+    ],
+  },
+
+  // ── Conversation 3 (alexmalinat) ────────────────────────
+  // Script : L:tfq? → X:Jme branle… → L:pareil → X:photo? → L:Je peux pas → X:pq?
+  3: {
+    initial: [],
+    responses: [
+      // après L: "tfq ?"
+      [{ sender: 'them', text: 'Jme branle en pensant à toi… Et toi tfq?' }],
+      // après L: "pareil"
+      [{ sender: 'them', text: 'mmmh.. photo ?' }],
+      // après L: "Je peux pas là"
+      [{ sender: 'them', text: 'pq tu peux pas ?' }],
+    ],
+  },
+
+  // ── Conversation 4 (darkRaven_75) ───────────────────────
+  // Script : X envoie d'abord, L répond
+  4: {
+    initial: [
+      { id: 's4_1', sender: 'them', text: 'Dispo ??', timestamp: '19:44' },
+      { id: 's4_2', sender: 'them', text: "Jai besoin que tu m'aide pour finir…", timestamp: '19:45' },
+    ],
+    responses: [
+      [{ sender: 'them', text: "T'es là ?" }],
+      [{ sender: 'them', text: "j'attends…" }],
+      [{ sender: 'them', text: 'stp réponds moi' }],
+    ],
+  },
+
+  // ── Conversation 5 (shadow_knight) ──────────────────────
+  // Script : X envoie plusieurs messages dont une photo
+  5: {
+    initial: [
+      { id: 's5_1', sender: 'them', text: 'Dispo ??', timestamp: '20:11' },
+      { id: 's5_2', sender: 'them', text: "Jai besoin que tu m'aide pour finir…", timestamp: '20:12' },
+      { id: 's5_3', sender: 'them', text: 'ok si tu veux on peut jouer…', timestamp: '20:13' },
+      { id: 's5_4', sender: 'them', type: 'photo', explicit: true, timestamp: '20:14' },
+    ],
+    responses: [
+      [{ sender: 'them', text: "C'est bien… continue" }],
+      [{ sender: 'them', text: 'encore photo stp' }],
+      [{ sender: 'them', text: 'mmmmh' }],
+    ],
+  },
 };
 
 export const moments = [
