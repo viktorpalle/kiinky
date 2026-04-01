@@ -1,4 +1,3 @@
-import StatusBar from '../components/StatusBar';
 import BottomNav from '../components/BottomNav';
 import { myProfile } from '../data/mockData';
 
@@ -147,9 +146,8 @@ export default function ProfilePage() {
   return (
     <div
       className="flex flex-col"
-      style={{ backgroundColor: '#0D0D1A', minHeight: '100dvh' }}
+      style={{ backgroundColor: '#0D0D1A', minHeight: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
     >
-      <StatusBar />
 
       {/* Header */}
       <div className="flex items-center justify-between px-4 pt-1 pb-3">

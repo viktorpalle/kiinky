@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import StatusBar from '../components/StatusBar';
 import BottomNav from '../components/BottomNav';
 import ProfileCard from '../components/ProfileCard';
 import { profiles } from '../data/mockData';
@@ -23,9 +22,8 @@ export default function HomePage() {
   return (
     <div
       className="flex flex-col"
-      style={{ backgroundColor: '#0D0D1A', minHeight: '100dvh' }}
+      style={{ backgroundColor: '#0D0D1A', minHeight: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
     >
-      <StatusBar />
 
       {/* Header */}
       <div

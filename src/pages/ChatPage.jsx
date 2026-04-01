@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import StatusBar from '../components/StatusBar';
 import { conversations, messages as mockMessages, chatScripts } from '../data/mockData';
 
 function BackIcon() {
@@ -215,12 +214,10 @@ export default function ChatPage() {
       className="flex flex-col"
       style={{ backgroundColor: '#0D0D1A', height: '100dvh' }}
     >
-      <StatusBar />
-
       {/* Header */}
       <div
-        className="flex items-center gap-3 px-4 pt-1 pb-3 flex-shrink-0"
-        style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+        className="flex items-center gap-3 px-4 pb-3 flex-shrink-0"
+        style={{ paddingTop: 'calc(env(safe-area-inset-top) + 8px)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}
       >
         <button onClick={() => navigate('/messages')} className="p-1 active:opacity-60">
           <BackIcon />
@@ -273,7 +270,7 @@ export default function ChatPage() {
         style={{
           backgroundColor: '#0D0D1A',
           borderTop: '1px solid rgba(255,255,255,0.06)',
-          paddingBottom: 'calc(env(safe-area-inset-bottom) + 10px)',
+          paddingBottom: 'env(safe-area-inset-bottom)',
         }}
       >
         {/* Bouton photo/pièce jointe */}
