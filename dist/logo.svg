@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="44" fill="#0D0D1A"/>
+  <defs>
+    <linearGradient id="lipsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF3366"/>
+      <stop offset="50%" style="stop-color:#9D4EDD"/>
+      <stop offset="100%" style="stop-color:#FF3366"/>
+    </linearGradient>
+    <linearGradient id="lipsGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C04499"/>
+      <stop offset="50%" style="stop-color:#7B2FBE"/>
+      <stop offset="100%" style="stop-color:#C04499"/>
+    </linearGradient>
+  </defs>
+  <!-- Upper lip with Cupid's bow -->
+  <path d="
+    M 42 100
+    C 50 82, 65 70, 76 76
+    C 84 80, 91 91, 100 88
+    C 109 91, 116 80, 124 76
+    C 135 70, 150 82, 158 100
+    C 142 93, 122 91, 100 91
+    C 78 91, 58 93, 42 100 Z
+  " fill="url(#lipsGrad)"/>
+  <!-- Lower lip -->
+  <path d="
+    M 42 100
+    C 54 122, 78 136, 100 136
+    C 122 136, 146 122, 158 100
+    C 142 110, 122 116, 100 116
+    C 78 116, 58 110, 42 100 Z
+  " fill="url(#lipsGrad2)"/>
+  <!-- Highlight on lower lip -->
+  <path d="M 66 118 Q 100 126 134 118" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="3" stroke-linecap="round"/>
+  <!-- Center line -->
+  <ellipse cx="100" cy="100" rx="42" ry="2.5" fill="#0D0D1A" opacity="0.6"/>
+</svg>
