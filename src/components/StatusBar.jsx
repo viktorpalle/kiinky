@@ -48,8 +48,7 @@ export default function StatusBar({ transparent = false }) {
     <div
       className="flex items-center justify-between px-4 pb-1 z-50 flex-shrink-0"
       style={{
-        paddingTop: 'calc(env(safe-area-inset-top) + 6px)',
-        minHeight: 'calc(env(safe-area-inset-top) + 28px)',
+        paddingTop: 'calc(env(safe-area-inset-top) + 4px)',
       }}
     >
       <span className="text-white text-xs font-semibold font-display tracking-wide">
