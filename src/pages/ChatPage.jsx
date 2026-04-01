@@ -185,7 +185,7 @@ export default function ChatPage() {
     const timestamp = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
     setMsgs((prev) => [...prev, { id: Date.now(), sender: 'me', text, timestamp }]);
     setDraft('');
-    inputRef.current?.focus();
+    inputRef.current?.blur();
 
     if (script) {
       const { responses } = script;
