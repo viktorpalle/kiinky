@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <div
       className="flex flex-col"
-      style={{ backgroundColor: '#0D0D1A', minHeight: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
+      style={{ backgroundColor: '#0D0D1A', height: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
     >
 
       {/* Header */}
