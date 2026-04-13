@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import BottomNav from '../components/BottomNav';
 import { myProfile } from '../data/mockData';
 
@@ -104,10 +105,11 @@ const ACTION_BUTTONS = [
   },
 ];
 
-function ActionButton({ button, badgeCount }) {
+function ActionButton({ button, badgeCount, onClick }) {
   const { label, Icon, color, shadow } = button;
   return (
     <button
+      onClick={onClick}
       className="flex flex-col items-center gap-2 active:scale-95 transition-transform duration-150"
     >
       <div className="relative">
@@ -141,6 +143,7 @@ function ActionButton({ button, badgeCount }) {
 
 /* ── Page ────────────────────────────────────────────────── */
 export default function ProfilePage() {
+  const navigate = useNavigate();
   const { pseudo, age, avatar, locationEnabled, badges } = myProfile;
 
   return (
@@ -267,6 +270,7 @@ export default function ProfilePage() {
                   <ActionButton
                     button={btn}
                     badgeCount={btn.key ? badges[btn.key] ?? 0 : 0}
+                    onClick={btn.key === 'messages' ? () => navigate('/messages') : undefined}
                   />
                 </div>
               ))}
