@@ -95,7 +95,19 @@ function TypingIndicator() {
   );
 }
 
+function TimeSeparator({ text }) {
+  return (
+    <div className="flex items-center gap-3 my-4">
+      <div className="flex-1 h-px" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }} />
+      <span className="text-[11px] px-2" style={{ color: '#8888AA' }}>{text}</span>
+      <div className="flex-1 h-px" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }} />
+    </div>
+  );
+}
+
 function Bubble({ msg }) {
+  if (msg.type === 'separator') return <TimeSeparator text={msg.text} />;
+
   const isMe = msg.sender === 'me';
   return (
     <div className={`flex ${isMe ? 'justify-end' : 'justify-start'} mb-2`}>

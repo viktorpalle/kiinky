@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { conversations } from '../data/mockData';
+import { conversations, extraConversations } from '../data/mockData';
 
 function BackIcon() {
   return (
@@ -95,6 +95,13 @@ export default function MessagesPage() {
             key={conv.id}
             conv={conv}
             onClick={() => navigate(`/chat/${conv.id}`)}
+          />
+        ))}
+        {extraConversations.map((conv) => (
+          <ConversationItem
+            key={conv.id}
+            conv={conv}
+            onClick={() => {}}
           />
         ))}
       </div>
