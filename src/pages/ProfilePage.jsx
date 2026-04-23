@@ -190,7 +190,7 @@ export default function ProfilePage() {
               src={avatar}
               alt={pseudo}
               className="absolute rounded-full object-cover"
-              style={{ inset: '5px' }}
+              style={{ inset: '5px', width: 'calc(100% - 10px)', height: 'calc(100% - 10px)' }}
               draggable={false}
             />
             {/* Bouton caméra */}

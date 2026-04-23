@@ -85,7 +85,7 @@ export const conversations = [
   {
     id: 1,
     contactPseudo: 'Billy Rawn',
-    contactAvatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+    contactAvatar: '/torse1.jpeg',
     lastMessage: '… chérie ?',
     date: '2026/03/13',
     unreadCount: 4,
@@ -93,7 +93,7 @@ export const conversations = [
   {
     id: 2,
     contactPseudo: 'David_46curieux',
-    contactAvatar: 'https://randomuser.me/api/portraits/men/45.jpg',
+    contactAvatar: '/torse2.jpeg',
     lastMessage: 'pq tu peux pas ?',
     date: '2026/03/12',
     unreadCount: 1,
