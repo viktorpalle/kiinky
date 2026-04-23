@@ -339,7 +339,7 @@ export const moments = [
 
 export const myProfile = {
   pseudo: 'XLouloucherry9',
-  age: 28,
+  age: 19,
   avatar: '/profile-picture.png',
   locationEnabled: false,
   badges: {
