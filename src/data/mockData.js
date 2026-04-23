@@ -108,9 +108,9 @@ export const conversations = [
   },
   {
     id: 4,
-    contactPseudo: 'NoLimitFlo',
-    contactAvatar: 'https://randomuser.me/api/portraits/men/78.jpg',
-    lastMessage: 'ok si tu veux on peut jouer...',
+    contactPseudo: 'MaxDu93',
+    contactAvatar: 'https://randomuser.me/api/portraits/men/55.jpg',
+    lastMessage: 'tu as quel âge ?',
     date: '2026/03/11',
     unreadCount: 2,
   },
