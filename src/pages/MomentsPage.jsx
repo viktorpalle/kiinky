@@ -50,7 +50,7 @@ function MomentPost({ post }) {
   return (
     <div
       className="mx-4 rounded-card p-4"
-      style={{ backgroundColor: '#1A1A2E' }}
+      style={{ backgroundColor: '#FAE0EA' }}
     >
       {/* En-tête */}
       <div className="flex items-center gap-3 mb-3">
@@ -73,7 +73,7 @@ function MomentPost({ post }) {
 
         <div className="flex-1 min-w-0">
           <p
-            className="text-white font-semibold text-sm leading-tight truncate"
+            className="text-[#2D1040] font-semibold text-sm leading-tight truncate"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             {post.pseudo}
@@ -84,7 +84,7 @@ function MomentPost({ post }) {
 
       {/* Texte du post */}
       <p
-        className="text-white text-sm leading-relaxed mb-4"
+        className="text-[#2D1040] text-sm leading-relaxed mb-4"
         style={{ fontFamily: "'DM Sans', sans-serif" }}
       >
         {post.text}
@@ -133,7 +133,7 @@ export default function MomentsPage() {
   return (
     <div
       className="flex flex-col"
-      style={{ backgroundColor: '#0D0D1A', height: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
+      style={{ backgroundColor: '#FFF0F5', height: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
     >
 
       {/* Header */}
@@ -142,7 +142,7 @@ export default function MomentsPage() {
         style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
       >
         <h1
-          className="text-lg font-bold text-white"
+          className="text-lg font-bold text-[#2D1040]"
           style={{ fontFamily: "'Quicksand', sans-serif" }}
         >
           Moments

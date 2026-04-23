@@ -57,7 +57,7 @@ export default function BottomNav() {
     <nav
       className="flex items-center justify-around px-2 pt-2 border-t border-white/5 flex-shrink-0"
       style={{
-        backgroundColor: '#0D0D1A',
+        backgroundColor: '#FFF0F5',
         paddingBottom: 'calc(env(safe-area-inset-bottom) + 8px)',
       }}
     >

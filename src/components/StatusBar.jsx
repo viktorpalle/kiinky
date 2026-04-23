@@ -51,7 +51,7 @@ export default function StatusBar({ transparent = false }) {
         paddingTop: 'calc(env(safe-area-inset-top) + 4px)',
       }}
     >
-      <span className="text-white text-xs font-semibold font-display tracking-wide">
+      <span className="text-[#2D1040] text-xs font-semibold font-display tracking-wide">
         {time}
       </span>
       <div className="flex items-center gap-1.5">

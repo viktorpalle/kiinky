@@ -7,7 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
+        // ── Palette actuelle (rose pale) ──
         bg: {
+          primary: '#FFF0F5',
+          secondary: '#FAE0EA',
+          tertiary: '#F2CEDC',
+        },
+        // ── Ancienne palette (violet/noir) — garder en référence ──
+        'bg-dark': {
           primary: '#0D0D1A',
           secondary: '#1A1A2E',
           tertiary: '#252542',

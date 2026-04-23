@@ -29,7 +29,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div style={{ flex: 1, backgroundColor: '#0D0D1A' }} />}>
+      <Suspense fallback={<div style={{ flex: 1, backgroundColor: '#FFF0F5' }} />}>
         <AnimatedRoutes />
       </Suspense>
     </BrowserRouter>

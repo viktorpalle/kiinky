@@ -4,7 +4,7 @@ import { conversations, messages as mockMessages, chatScripts } from '../data/mo
 
 function BackIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2D1040" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M19 12H5M12 19l-7-7 7-7"/>
     </svg>
   );
@@ -62,7 +62,7 @@ function PhotoBubble({ isMe, explicit, imageUrl }) {
           inset: 0,
           background: explicit
             ? 'linear-gradient(135deg, #2a1040 0%, #1a0a2e 50%, #0d0d1a 100%)'
-            : 'linear-gradient(135deg, #1e1e3a 0%, #252542 100%)',
+            : 'linear-gradient(135deg, #1e1e3a 0%, #F2CEDC 100%)',
           filter: 'blur(2px)',
         }}
       />
@@ -83,7 +83,7 @@ function TypingIndicator() {
     <div className="flex justify-start mb-2">
       <div
         className="px-4 py-3"
-        style={{ backgroundColor: '#252542', borderRadius: '18px 18px 18px 4px' }}
+        style={{ backgroundColor: '#F2CEDC', borderRadius: '18px 18px 18px 4px' }}
       >
         <div className="flex gap-1 items-center" style={{ height: '14px' }}>
           <span className="typing-dot" />
@@ -116,9 +116,9 @@ function Bubble({ msg }) {
           <PhotoBubble isMe={isMe} explicit={msg.explicit} imageUrl={msg.imageUrl} />
         ) : (
           <div
-            className="px-3.5 py-2.5 text-sm text-white leading-snug"
+            className={`px-3.5 py-2.5 text-sm leading-snug ${isMe ? 'text-white' : 'text-[#2D1040]'}`}
             style={{
-              backgroundColor: isMe ? '#7B2FBE' : '#252542',
+              backgroundColor: isMe ? '#7B2FBE' : '#F2CEDC',
               borderRadius: isMe
                 ? '18px 18px 4px 18px'
                 : '18px 18px 18px 4px',
@@ -225,7 +225,7 @@ export default function ChatPage() {
   return (
     <div
       className="flex flex-col"
-      style={{ backgroundColor: '#0D0D1A', height: '100dvh' }}
+      style={{ backgroundColor: '#FFF0F5', height: '100dvh' }}
     >
       {/* Header */}
       <div
@@ -244,7 +244,7 @@ export default function ChatPage() {
 
         <div className="flex-1 min-w-0">
           <p
-            className="font-semibold text-white text-sm leading-tight truncate"
+            className="font-semibold text-[#2D1040] text-sm leading-tight truncate"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             {conv.contactPseudo}
@@ -276,7 +276,7 @@ export default function ChatPage() {
       <div
         className="flex-shrink-0 px-3 pt-3 flex items-end gap-2"
         style={{
-          backgroundColor: '#0D0D1A',
+          backgroundColor: '#FFF0F5',
           borderTop: '1px solid rgba(255,255,255,0.06)',
           paddingBottom: 'env(safe-area-inset-bottom)',
         }}
@@ -298,7 +298,7 @@ export default function ChatPage() {
         <button
           onClick={() => fileInputRef.current?.click()}
           className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0 active:opacity-60 transition-opacity"
-          style={{ backgroundColor: '#1A1A2E' }}
+          style={{ backgroundColor: '#FAE0EA' }}
         >
           <AttachIcon />
         </button>
@@ -306,7 +306,7 @@ export default function ChatPage() {
         {/* Input */}
         <div
           className="flex-1 flex items-center px-4 py-2.5 rounded-full"
-          style={{ backgroundColor: '#252542', minHeight: '44px' }}
+          style={{ backgroundColor: '#F2CEDC', minHeight: '44px' }}
         >
           <textarea
             ref={inputRef}
@@ -315,7 +315,7 @@ export default function ChatPage() {
             onKeyDown={handleKey}
             placeholder="Message..."
             rows={1}
-            className="w-full bg-transparent text-white text-sm placeholder-[#8888AA] resize-none outline-none leading-snug"
+            className="w-full bg-transparent text-[#2D1040] text-sm placeholder-[#8888AA] resize-none outline-none leading-snug"
             style={{ maxHeight: '100px', fontFamily: "'DM Sans', sans-serif" }}
             onInput={(e) => {
               e.target.style.height = 'auto';
@@ -329,7 +329,7 @@ export default function ChatPage() {
           onClick={send}
           className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0 active:scale-90 transition-transform"
           style={{
-            backgroundColor: draft.trim() ? '#7B2FBE' : '#252542',
+            backgroundColor: draft.trim() ? '#7B2FBE' : '#F2CEDC',
             transition: 'background-color 0.15s ease, transform 0.1s ease',
           }}
         >

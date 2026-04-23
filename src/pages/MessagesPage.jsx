@@ -3,7 +3,7 @@ import { conversations, extraConversations } from '../data/mockData';
 
 function BackIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2D1040" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M19 12H5M12 19l-7-7 7-7"/>
     </svg>
   );
@@ -25,7 +25,7 @@ function ConversationItem({ conv, onClick }) {
         {/* Pastille en ligne */}
         <span
           className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2"
-          style={{ backgroundColor: '#44DD88', borderColor: '#0D0D1A' }}
+          style={{ backgroundColor: '#44DD88', borderColor: '#FFF0F5' }}
         />
       </div>
 
@@ -66,7 +66,7 @@ export default function MessagesPage() {
   return (
     <div
       className="flex flex-col"
-      style={{ backgroundColor: '#0D0D1A', height: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
+      style={{ backgroundColor: '#FFF0F5', height: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
     >
 
       {/* Header */}
@@ -75,13 +75,13 @@ export default function MessagesPage() {
         style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
       >
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/profile')}
           className="p-1 active:opacity-60 mr-2"
         >
           <BackIcon />
         </button>
         <h1
-          className="absolute left-1/2 -translate-x-1/2 text-lg font-bold text-white"
+          className="absolute left-1/2 -translate-x-1/2 text-lg font-bold text-[#2D1040]"
           style={{ fontFamily: "'Quicksand', sans-serif" }}
         >
           Message

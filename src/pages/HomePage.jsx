@@ -22,13 +22,13 @@ export default function HomePage() {
   return (
     <div
       className="flex flex-col"
-      style={{ backgroundColor: '#0D0D1A', height: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
+      style={{ backgroundColor: '#FFF0F5', height: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
     >
 
       {/* Header */}
       <div
         className="flex items-center justify-between px-4 pt-1 pb-0"
-        style={{ backgroundColor: '#0D0D1A' }}
+        style={{ backgroundColor: '#FFF0F5' }}
       >
         {/* Onglets */}
         <div className="flex items-end gap-5">

@@ -133,7 +133,7 @@ function ActionButton({ button, badgeCount, onClick }) {
       </div>
       <span
         className="text-xs font-semibold tracking-wide"
-        style={{ color: '#FFFFFF', fontFamily: "'DM Sans', sans-serif" }}
+        style={{ color: '#2D1040', fontFamily: "'DM Sans', sans-serif" }}
       >
         {label}
       </span>
@@ -149,13 +149,13 @@ export default function ProfilePage() {
   return (
     <div
       className="flex flex-col"
-      style={{ backgroundColor: '#0D0D1A', height: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
+      style={{ backgroundColor: '#FFF0F5', height: '100dvh', paddingTop: 'env(safe-area-inset-top)' }}
     >
 
       {/* Header */}
       <div className="flex items-center justify-between px-4 pt-1 pb-3">
         <h1
-          className="text-lg font-bold text-white"
+          className="text-lg font-bold text-[#2D1040]"
           style={{ fontFamily: "'Quicksand', sans-serif" }}
         >
           Mon profil
@@ -183,7 +183,7 @@ export default function ProfilePage() {
             {/* Masque sombre pour créer l'effet bordure */}
             <div
               className="absolute rounded-full"
-              style={{ inset: '3px', backgroundColor: '#0D0D1A' }}
+              style={{ inset: '3px', backgroundColor: '#FFF0F5' }}
             />
             {/* Photo */}
             <img
@@ -198,7 +198,7 @@ export default function ProfilePage() {
               className="absolute bottom-0 right-0 w-8 h-8 rounded-full flex items-center justify-center border-2"
               style={{
                 backgroundColor: '#7B2FBE',
-                borderColor: '#0D0D1A',
+                borderColor: '#FFF0F5',
               }}
             >
               <CameraIcon />
@@ -207,7 +207,7 @@ export default function ProfilePage() {
 
           {/* Pseudo + âge */}
           <h2
-            className="mt-4 text-xl font-bold text-white tracking-wide"
+            className="mt-4 text-xl font-bold text-[#2D1040] tracking-wide"
             style={{ fontFamily: "'Quicksand', sans-serif" }}
           >
             {pseudo}
@@ -262,7 +262,7 @@ export default function ProfilePage() {
         <div className="mx-4 mb-6">
           <div
             className="rounded-card p-5"
-            style={{ backgroundColor: '#1A1A2E' }}
+            style={{ backgroundColor: '#FAE0EA' }}
           >
             <div className="grid grid-cols-2 gap-y-6">
               {ACTION_BUTTONS.map((btn) => (
@@ -282,7 +282,7 @@ export default function ProfilePage() {
         <div className="mx-4 mb-6">
           <div
             className="rounded-card divide-y divide-white/[0.06]"
-            style={{ backgroundColor: '#1A1A2E' }}
+            style={{ backgroundColor: '#FAE0EA' }}
           >
             {[
               { label: 'Modifier mon profil', icon: '✏️' },
@@ -295,7 +295,7 @@ export default function ProfilePage() {
               >
                 <div className="flex items-center gap-3">
                   <span className="text-base">{icon}</span>
-                  <span className="text-white text-sm font-medium">{label}</span>
+                  <span className="text-[#2D1040] text-sm font-medium">{label}</span>
                 </div>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8888AA" strokeWidth="2" strokeLinecap="round">
                   <path d="M9 18l6-6-6-6"/>

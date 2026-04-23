@@ -19,7 +19,7 @@ function HeartIcon({ filled }) {
 const AGE_BADGE_COLORS = [
   { bg: 'rgba(123, 47, 190, 0.85)', text: '#fff' },
   { bg: 'rgba(255, 51, 102, 0.85)', text: '#fff' },
-  { bg: 'rgba(68, 221, 136, 0.85)', text: '#0D0D1A' },
+  { bg: 'rgba(68, 221, 136, 0.85)', text: '#FFF0F5' },
   { bg: 'rgba(157, 78, 221, 0.85)', text: '#fff' },
 ];
 
@@ -31,7 +31,7 @@ export default function ProfileCard({ profile }) {
     <div
       className="relative rounded-card overflow-hidden cursor-pointer active:scale-95 transition-transform duration-150"
       style={{
-        backgroundColor: '#1A1A2E',
+        backgroundColor: '#FAE0EA',
         boxShadow: '0 2px 16px rgba(30, 10, 60, 0.4)',
         aspectRatio: '3/4',
       }}
@@ -66,7 +66,7 @@ export default function ProfileCard({ profile }) {
       <div className="absolute bottom-0 inset-x-0 px-2.5 pb-2.5 pt-1">
         {/* Pseudo */}
         <p
-          className="text-white font-semibold text-sm leading-tight truncate"
+          className="text-[#2D1040] font-semibold text-sm leading-tight truncate"
           style={{ fontFamily: "'DM Sans', sans-serif" }}
         >
           {profile.pseudo}

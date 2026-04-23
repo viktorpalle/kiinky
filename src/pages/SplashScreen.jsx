@@ -20,7 +20,7 @@ export default function SplashScreen() {
     <div
       className="flex flex-col items-center justify-center"
       style={{
-        backgroundColor: '#0D0D1A',
+        backgroundColor: '#FFF0F5',
         height: '100dvh',
         opacity: leaving ? 0 : 1,
         transition: 'opacity 0.2s ease',
