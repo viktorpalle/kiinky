@@ -57,7 +57,7 @@ export const profiles = [
     region: 'Nouvelle-Aquitaine',
     country: 'FR',
     distance: '560 km',
-    photo: '/torse.jpeg',
+    photo: 'https://randomuser.me/api/portraits/women/4.jpg',
   },
   {
     id: 7,
@@ -129,7 +129,7 @@ export const extraConversations = [
   {
     id: 'x2',
     contactPseudo: 'pierrot_d_amour',
-    contactAvatar: '/torse.jpeg',
+    contactAvatar: 'https://randomuser.me/api/portraits/men/70.jpg',
     lastMessage: "t'es trop belle sur ta photo",
     date: '2026/03/13',
     unreadCount: 0,
@@ -138,7 +138,7 @@ export const extraConversations = [
   {
     id: 'x3',
     contactPseudo: 'Kévin_974',
-    contactAvatar: 'https://randomuser.me/api/portraits/men/78.jpg',
+    contactAvatar: 'https://randomuser.me/api/portraits/men/81.jpg',
     lastMessage: "tu veux qu'on se voit ?",
     date: '2026/03/12',
     unreadCount: 1,
