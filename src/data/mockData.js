@@ -7,7 +7,7 @@ export const profiles = [
     region: 'Pays de la Loire',
     country: 'FR',
     distance: '2 km',
-    photo: 'https://i.pravatar.cc/400?img=11',
+    photo: '/torse1.jpeg',
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ export const profiles = [
     region: 'Île-de-France',
     country: 'FR',
     distance: '5 km',
-    photo: 'https://i.pravatar.cc/400?img=12',
+    photo: '/torse2.jpeg',
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ export const profiles = [
     region: 'Île-de-France',
     country: 'FR',
     distance: '8 km',
-    photo: 'https://i.pravatar.cc/400?img=15',
+    photo: '/torse3.jpeg',
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ export const profiles = [
     region: 'Occitanie',
     country: 'FR',
     distance: '320 km',
-    photo: 'https://i.pravatar.cc/400?img=17',
+    photo: '/torse4.jpeg',
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ export const profiles = [
     region: 'Auvergne-Rhône-Alpes',
     country: 'FR',
     distance: '462 km',
-    photo: 'https://i.pravatar.cc/400?img=25',
+    photo: '/torse5.jpeg',
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ export const profiles = [
     region: 'Nouvelle-Aquitaine',
     country: 'FR',
     distance: '560 km',
-    photo: 'https://i.pravatar.cc/400?img=47',
+    photo: '/torse.jpeg',
   },
   {
     id: 7,
@@ -67,7 +67,7 @@ export const profiles = [
     region: 'Provence-Alpes-Côte d\'Azur',
     country: 'FR',
     distance: '780 km',
-    photo: 'https://i.pravatar.cc/400?img=59',
+    photo: 'https://randomuser.me/api/portraits/men/41.jpg',
   },
   {
     id: 8,
@@ -77,7 +77,7 @@ export const profiles = [
     region: 'Pays de la Loire',
     country: 'FR',
     distance: '14 km',
-    photo: 'https://i.pravatar.cc/400?img=44',
+    photo: 'https://randomuser.me/api/portraits/men/68.jpg',
   },
 ];
 
