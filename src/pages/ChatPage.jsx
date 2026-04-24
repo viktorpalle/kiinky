@@ -160,11 +160,10 @@ export default function ChatPage() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [msgs, isTyping]);
 
-  // Envoie une liste de messages scripté un par un, chacun précédé de son typing indicator
   const deliverBatch = (batch, index = 0) => {
     if (index >= batch.length) return;
-    // petite pause avant de commencer à "écrire" (sauf premier qui attend déjà)
-    const pause = index === 0 ? 0 : 600;
+    const prevPauseAfter = index > 0 ? (batch[index - 1].pauseAfter ?? 0) : 0;
+    const pause = index === 0 ? 0 : 600 + prevPauseAfter;
     setTimeout(() => {
       setIsTyping(true);
       const typingDelay = 1600 + Math.random() * 1000;

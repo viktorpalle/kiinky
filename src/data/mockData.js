@@ -101,7 +101,7 @@ export const conversations = [
   {
     id: 3,
     contactPseudo: 'NoLimitFlo',
-    contactAvatar: 'https://randomuser.me/api/portraits/men/78.jpg',
+    contactAvatar: '/torse5.jpeg',
     lastMessage: 'ok si tu veux on peut jouer...',
     date: '2026/03/11',
     unreadCount: 2,
@@ -109,7 +109,7 @@ export const conversations = [
   {
     id: 4,
     contactPseudo: 'MaxDu93',
-    contactAvatar: 'https://randomuser.me/api/portraits/men/55.jpg',
+    contactAvatar: '/torse3.jpeg',
     lastMessage: 'tu as quel âge ?',
     date: '2026/03/11',
     unreadCount: 2,
@@ -120,7 +120,7 @@ export const extraConversations = [
   {
     id: 'x1',
     contactPseudo: 'marc_69_hard',
-    contactAvatar: 'https://randomuser.me/api/portraits/men/12.jpg',
+    contactAvatar: '/torse4.jpeg',
     lastMessage: 'dispo ce soir ?',
     date: '2026/03/13',
     unreadCount: 2,
@@ -129,7 +129,7 @@ export const extraConversations = [
   {
     id: 'x2',
     contactPseudo: 'pierrot_d_amour',
-    contactAvatar: 'https://randomuser.me/api/portraits/men/23.jpg',
+    contactAvatar: '/torse.jpeg',
     lastMessage: "t'es trop belle sur ta photo",
     date: '2026/03/13',
     unreadCount: 0,
@@ -138,7 +138,7 @@ export const extraConversations = [
   {
     id: 'x3',
     contactPseudo: 'Kévin_974',
-    contactAvatar: 'https://randomuser.me/api/portraits/men/36.jpg',
+    contactAvatar: 'https://randomuser.me/api/portraits/men/78.jpg',
     lastMessage: "tu veux qu'on se voit ?",
     date: '2026/03/12',
     unreadCount: 1,
@@ -147,7 +147,7 @@ export const extraConversations = [
   {
     id: 'x4',
     contactPseudo: 'darkdesire_31',
-    contactAvatar: 'https://randomuser.me/api/portraits/men/51.jpg',
+    contactAvatar: 'https://randomuser.me/api/portraits/women/51.jpg',
     lastMessage: '😏',
     date: '2026/03/12',
     unreadCount: 3,
@@ -164,8 +164,8 @@ export const extraConversations = [
   },
   {
     id: 'x6',
-    contactPseudo: 'GrossBoss_idf',
-    contactAvatar: 'https://randomuser.me/api/portraits/men/71.jpg',
+    contactPseudo: 'GirlBoss_idf',
+    contactAvatar: 'https://randomuser.me/api/portraits/women/71.jpg',
     lastMessage: 'envoie photo stp',
     date: '2026/03/11',
     unreadCount: 1,
@@ -237,7 +237,7 @@ export const chatScripts = {
       [{ sender: 'them', text: 'Avec quoi ma chérie ?' }],
       // après L: [envoie photo]
       [
-        { sender: 'them', text: "Ah ouais t'es vraiment une petite souillon toi..." },
+        { sender: 'them', text: "Ah ouais t'es vraiment une petite souillon toi...", pauseAfter: 4000 },
         { sender: 'them', text: 'tu continues ?' },
         { sender: 'them', text: "t'en es où ?" },
         { sender: 'them', text: '... chérie ?' },
@@ -263,11 +263,12 @@ export const chatScripts = {
   // Flo envoie deux fois, L envoie photo → Flo: "ok si tu veux on peut jouer..." → photo TEUB
   3: {
     initial: [
-      { id: 's3_1', sender: 'them', text: 'Dispo ??', timestamp: '19:44' },
-      { id: 's3_2', sender: 'them', text: "Jai besoin que tu m'aide pour finir...", timestamp: '19:45' },
+      { id: 's3_1', sender: 'them', text: 'hé t\'es là ?', timestamp: '17:02' },
+      { id: 's3_2', sender: 'them', text: 'jpense à toi là...', timestamp: '17:03' },
+      { id: 's3_3', sender: 'them', text: "j'ai envie de toi sérieux", timestamp: '17:04' },
       { id: 's3_sep', type: 'separator', text: 'Plus tard' },
-      { id: 's3_3', sender: 'them', text: 'Dispo ??', timestamp: '21:12' },
-      { id: 's3_4', sender: 'them', text: "Jai besoin que tu m'aide pour finir..", timestamp: '21:13' },
+      { id: 's3_4', sender: 'them', text: 'Dispo ??', timestamp: '21:12' },
+      { id: 's3_5', sender: 'them', text: "Jai besoin que tu m'aide pour finir..", timestamp: '21:13' },
     ],
     responses: [
       // après L: [envoie photo]
@@ -282,11 +283,13 @@ export const chatScripts = {
   // Identique mais la photo finale est un torse
   4: {
     initial: [
-      { id: 's4_1', sender: 'them', text: 'Dispo ??', timestamp: '19:44' },
-      { id: 's4_2', sender: 'them', text: "Jai besoin que tu m'aide pour finir...", timestamp: '19:45' },
+      { id: 's4_1', sender: 'them', text: 'salut toi 😏', timestamp: '18:31' },
+      { id: 's4_2', sender: 'them', text: "j'ai vu tes photos... 🔥", timestamp: '18:31' },
+      { id: 's4_3', sender: 'them', text: "t'es vraiment trop bonne", timestamp: '18:33' },
+      { id: 's4_4', sender: 'them', text: "t'es chaude ce soir ?", timestamp: '18:34' },
       { id: 's4_sep', type: 'separator', text: 'Plus tard' },
-      { id: 's4_3', sender: 'them', text: 'Dispo ??', timestamp: '21:12' },
-      { id: 's4_4', sender: 'them', text: "Jai besoin que tu m'aide pour finir..", timestamp: '21:13' },
+      { id: 's4_5', sender: 'them', text: 'Dispo ??', timestamp: '21:12' },
+      { id: 's4_6', sender: 'them', text: "Jai besoin que tu m'aide pour finir..", timestamp: '21:13' },
     ],
     responses: [
       // après L: [envoie photo]
