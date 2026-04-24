@@ -17,7 +17,7 @@ export const profiles = [
     region: 'Île-de-France',
     country: 'FR',
     distance: '5 km',
-    photo: '/torse2.jpeg',
+    photo: 'https://randomuser.me/api/portraits/men/89.jpg',
   },
   {
     id: 3,
